@@ -1,0 +1,164 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/flag.gd" id="1_flag"]
+[ext_resource type="FontFile" uid="uid://ev8ulh56t6x2" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="2_font"]
+[ext_resource type="AudioStream" uid="uid://1hhwbqpeqy3b" path="res://assets/sounds/power_up.wav" id="3_sound"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_flag"]
+size = Vector2(14, 66)
+
+[sub_resource type="StyleBoxFlat" id="StyleBox_panel"]
+content_margin_left = 40.0
+content_margin_top = 28.0
+content_margin_right = 40.0
+content_margin_bottom = 28.0
+bg_color = Color(0.16, 0.3, 0.18, 0.95)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.45, 0.85, 0.35, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBox_btn"]
+content_margin_left = 24.0
+content_margin_top = 12.0
+content_margin_right = 24.0
+content_margin_bottom = 12.0
+bg_color = Color(0.9, 0.15, 0.2, 1)
+border_width_bottom = 4
+border_color = Color(0.55, 0.08, 0.12, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBox_btn_hover"]
+content_margin_left = 24.0
+content_margin_top = 12.0
+content_margin_right = 24.0
+content_margin_bottom = 12.0
+bg_color = Color(1, 0.3, 0.32, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 4
+border_color = Color(1, 0.85, 0.25, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBox_btn_pressed"]
+content_margin_left = 24.0
+content_margin_top = 14.0
+content_margin_right = 24.0
+content_margin_bottom = 10.0
+bg_color = Color(0.7, 0.1, 0.15, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[node name="Flag" type="Area2D"]
+script = ExtResource("1_flag")
+
+[node name="Base" type="ColorRect" parent="."]
+offset_left = -5.0
+offset_top = -4.0
+offset_right = 6.0
+offset_bottom = 0.0
+color = Color(0.36, 0.25, 0.2, 1)
+
+[node name="Pole" type="ColorRect" parent="."]
+offset_left = -1.0
+offset_top = -64.0
+offset_right = 2.0
+offset_bottom = -4.0
+color = Color(0.92, 0.92, 0.95, 1)
+
+[node name="Knob" type="ColorRect" parent="."]
+offset_left = -2.0
+offset_top = -68.0
+offset_right = 3.0
+offset_bottom = -64.0
+color = Color(1, 0.8, 0.2, 1)
+
+[node name="Cloth" type="Polygon2D" parent="."]
+position = Vector2(2, -62)
+color = Color(0.9, 0.15, 0.2, 1)
+polygon = PackedVector2Array(0, 0, 24, 8, 0, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(4, -33)
+shape = SubResource("RectangleShape2D_flag")
+
+[node name="WinSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_sound")
+
+[node name="WinLayer" type="CanvasLayer" parent="."]
+layer = 10
+
+[node name="Center" type="CenterContainer" parent="WinLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Panel" type="PanelContainer" parent="WinLayer/Center"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBox_panel")
+
+[node name="VBox" type="VBoxContainer" parent="WinLayer/Center/Panel"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Title" type="Label" parent="WinLayer/Center/Panel/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.25, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 48
+text = "YOU WIN!"
+horizontal_alignment = 1
+
+[node name="Subtitle" type="Label" parent="WinLayer/Center/Panel/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 1, 0.9, 1)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 16
+text = "You reached the flag!"
+horizontal_alignment = 1
+
+[node name="PlayAgainButton" type="Button" parent="WinLayer/Center/Panel/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBox_btn")
+theme_override_styles/hover = SubResource("StyleBox_btn_hover")
+theme_override_styles/focus = SubResource("StyleBox_btn_hover")
+theme_override_styles/pressed = SubResource("StyleBox_btn_pressed")
+text = "PLAY AGAIN"
+
+[node name="Hint" type="Label" parent="WinLayer/Center/Panel/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.85, 0.7, 1)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 12
+text = "or press R / Enter"
+horizontal_alignment = 1
