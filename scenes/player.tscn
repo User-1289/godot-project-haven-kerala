@@ -45,13 +45,13 @@ animations = [{
 script = ExtResource("1_g2els")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2052176666]
-position = Vector2(-0.8750008, -20)
-scale = Vector2(1.3203125, 1.3125001)
+position = Vector2(-2.3750012, -22.499998)
+scale = Vector2(1.4140625, 1.46875)
 sprite_frames = SubResource("SpriteFrames_4kxuq")
 autoplay = "default"
-frame_progress = 0.63381004
+frame_progress = 0.9520123
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1838258410]
 z_index = 5
-position = Vector2(0, -14)
+position = Vector2(-3, -16)
 shape = SubResource("CircleShape2D_4kxuq")
